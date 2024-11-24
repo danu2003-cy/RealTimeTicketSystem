@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - include:
+      file: "tables/event.yml"
+      relativeToChangelogFile: true
+
+  - include:
+      file: "tables/ticket.yml"
+      relativeToChangelogFile: true
