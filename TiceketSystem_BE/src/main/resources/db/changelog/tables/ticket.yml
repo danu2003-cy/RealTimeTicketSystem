@@ -14,7 +14,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: event_id
+                  name: events_id
                   type: INT
                   constraints:
                     nullable: false
