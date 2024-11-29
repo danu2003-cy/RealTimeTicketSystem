@@ -4,18 +4,16 @@ import javax.persistence.*;
 import java.util.Date;
 
 
-
-
 @Entity
 @Table(name = "Purchase_details")
 public class Purchase {
 
     @Id
-    @Column(name = "transaction_id")
+    @Column(name = "purchase_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int transactionID;
+    private int purchaseID;
 
-    @Column(name = "transaction_date", nullable = false, columnDefinition = "DATETIME")
+    @Column(name = "purchase_date", nullable = false, columnDefinition = "DATETIME")
     private Date date;
 
     @Column(name = "ticket_type", nullable = false)
@@ -33,20 +31,20 @@ public class Purchase {
     public Purchase() {
     }
 
-    public Purchase(int transactionID, Date date, String ticketType, Customer customer, Ticket ticket) {
-        this.transactionID = transactionID;
+    public Purchase(int purchaseID, Date date, String ticketType, Customer customer, Ticket ticket) {
+        this.purchaseID = purchaseID;
         this.date = date;
         this.ticketType = ticketType;
         this.customer = customer;
         this.ticket = ticket;
     }
 
-    public int getTransactionID() {
-        return transactionID;
+    public int getPurchaseID() {
+        return purchaseID;
     }
 
-    public void setTransactionID(int transactionID) {
-        this.transactionID = transactionID;
+    public void setPurchaseID(int purchaseID) {
+        this.purchaseID = purchaseID;
     }
 
     public Date getDate() {

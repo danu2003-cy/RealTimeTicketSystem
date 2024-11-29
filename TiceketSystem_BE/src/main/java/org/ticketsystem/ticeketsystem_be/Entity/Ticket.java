@@ -1,6 +1,4 @@
 package org.ticketsystem.ticeketsystem_be.Entity;
-
-import org.ticketsystem.ticeketsystem_be.Entity.Vendor;
 import org.ticketsystem.ticeketsystem_be.Util.EventType;
 
 import javax.persistence.*;
@@ -37,12 +35,12 @@ public class Ticket {
     private Vendor vendor;
 
     @OneToMany(mappedBy = "customer")
-    private Set<TransactionDetails> detailsSet;
+    private Set<Purchase> detailsSet;
 
     public Ticket() {
     }
 
-    public Ticket(int id, String name, EventType ticketType, double price, boolean sold, Date date, Vendor vendor, Set<TransactionDetails> detailsSet) {
+    public Ticket(int id, String name, EventType ticketType, double price, boolean sold, Date date, Vendor vendor, Set<Purchase> detailsSet) {
         this.id = id;
         this.name = name;
         this.ticketType = ticketType;
@@ -109,11 +107,11 @@ public class Ticket {
         this.vendor = vendor;
     }
 
-    public Set<TransactionDetails> getDetailsSet() {
+    public Set<Purchase> getDetailsSet() {
         return detailsSet;
     }
 
-    public void setDetailsSet(Set<TransactionDetails> detailsSet) {
+    public void setDetailsSet(Set<Purchase> detailsSet) {
         this.detailsSet = detailsSet;
     }
 }

@@ -1,62 +1,48 @@
 package org.ticketsystem.ticeketsystem_be.Entity;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "customer")
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
-    private Long id;
+    @Column(name = "customer_id",nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int customerId;
 
-    @Column(name = "customer_name")
+    @Column(name = "name",nullable = false,length = 100)
     private String name;
 
-    @Column(name = "email", unique = true, nullable = false)
-    private String email;
+    @Column(name = "retrieval_interval")
+    private int retrievalInterval;
 
-    @Column(name = "contact")
-    private String contactNumber;
+    @Column(name = "is_vip",nullable = false)
+    private boolean isVIP;
 
-    @Column(name = "username", unique = true, nullable = false)
-    private String username;
-
-    @Column(name = "password",nullable = false)
-    private String password;
-
-    @Column(name = "created_date", updatable = false)
-    private Date createdDate;
-
-    @Column(name = "customer_status")
-    @Enumerated(EnumType.STRING)
-    private CustomerStatus Status;
+    @OneToMany(mappedBy = "customer")
+    private Set<Purchase> detailsSet;
 
 
     public Customer() {
     }
 
-    public Customer(Long id, String name, String email, String contactNumber, String username, String password, Date createdDate, CustomerStatus status) {
-        this.id = id;
+    public Customer(int customerId, String name, int retrievalInterval, boolean isVIP, Set<Purchase> detailsSet) {
+        this.customerId = customerId;
         this.name = name;
-        this.email = email;
-        this.contactNumber = contactNumber;
-        this.username = username;
-        this.password = password;
-        this.createdDate = createdDate;
-        Status = status;
+        this.retrievalInterval = retrievalInterval;
+        this.isVIP = isVIP;
+        this.detailsSet = detailsSet;
     }
 
-    public Long getId() {
-        return id;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getName() {
@@ -67,51 +53,27 @@ public class Customer {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public int getRetrievalInterval() {
+        return retrievalInterval;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setRetrievalInterval(int retrievalInterval) {
+        this.retrievalInterval = retrievalInterval;
     }
 
-    public String getContactNumber() {
-        return contactNumber;
+    public boolean isVIP() {
+        return isVIP;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setVIP(boolean VIP) {
+        isVIP = VIP;
     }
 
-    public String getUsername() {
-        return username;
+    public Set<Purchase> getDetailsSet() {
+        return detailsSet;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public CustomerStatus getStatus() {
-        return Status;
-    }
-
-    public void setStatus(CustomerStatus status) {
-        Status = status;
+    public void setDetailsSet(Set<Purchase> detailsSet) {
+        this.detailsSet = detailsSet;
     }
 }

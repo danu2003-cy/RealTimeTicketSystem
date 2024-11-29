@@ -1,5 +1,4 @@
 package org.ticketsystem.ticeketsystem_be.Entity;
-
 import javax.persistence.*;
 import java.util.Set;
 
