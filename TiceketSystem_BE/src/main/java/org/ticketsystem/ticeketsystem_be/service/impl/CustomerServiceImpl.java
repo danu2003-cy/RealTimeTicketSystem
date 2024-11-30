@@ -54,11 +54,32 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public String updateCustomer(int customerID, CustomerDTO customerDTO) {
-        return "";
+        // Fetch the customer by ID
+        Customer customer = customerRepo.findById(customerID).orElse(null);
+
+        if (customer == null) {
+            return "Customer not found!";
+        }
+
+        // Update the customer fields
+        customer.setName(customerDTO.getName());
+        customer.setVIP(customerDTO.isVIP());
+        // If you have any other fields to update, you can add them here.
+
+        // Save the updated customer
+        customerRepo.save(customer);
+
+        return "Customer updated successfully!";
     }
 
     @Override
-    public String deleteCustomer(int customerID){
-        return null;
+    public String deleteCustomer(int customerID) {
+        // Check if the customer exists
+        if (customerRepo.existsById(customerID)) {
+            customerRepo.deleteById(customerID);
+            return "Customer deleted successfully!";
+        } else {
+            return "Customer not found!";
+        }
     }
 }

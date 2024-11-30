@@ -13,4 +13,6 @@ import java.util.List;
 public interface TicketRepo extends JpaRepository<Ticket, Integer> {
 
     List<Ticket> findAllBySoldEquals(boolean b);
+
+    List<Ticket> findBySoldFalse();
 }

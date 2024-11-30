@@ -79,33 +79,37 @@ public class TicketServiceImpl implements TicketService {
         List<TicketDTO> ticketDTOs = new ArrayList<>();
 
         for (Ticket ticket : tickets) {
-            ticketDTOs.add(new TicketDTO(
-                    ticket.getTicketId(),
-                    ticket.getName(),
-                    ticket.getPrice(),
-                    ticket.isSold(),
-                    ticket.getVendor(),
-                    ticket.getTicketType()
-            ));
+            TicketDTO ticketDTO = new TicketDTO();
+            ticketDTO.setId(ticket.getTicketId());
+            ticketDTO.setTicketType(ticket.getTicketType());  // Assuming TicketType is an Enum
+            ticketDTO.setSold(ticket.isSold());
+            ticketDTO.setPrice(ticket.getPrice());
+
+            ticketDTOs.add(ticketDTO);
         }
         return ticketDTOs;
     }
 
     @Override
     public List<TicketDTO> getAvailableTickets() {
-        List<Ticket> ticketList = ticketRepo.findAllBySoldEquals(false);
-        List<TicketDTO> ticketDTOS = new ArrayList<>();
+        // Retrieve all available tickets (those that are not sold)
+        List<Ticket> availableTickets = ticketRepo.findBySoldFalse();  // Assuming a custom query in the repository for unsold tickets
 
-        for (Ticket ticket : ticketList) {
-            ticketDTOS.add(new TicketDTO(
-                    ticket.getTicketId(),
-                    ticket.getName(),
-                    ticket.getPrice(),
-                    ticket.isSold(),
-                    ticket.getVendor(),
-                    ticket.getTicketType()
-            ));
+        // Create a list to store TicketDTOs
+        List<TicketDTO> availableTicketDTOList = new ArrayList<>();
+
+        // Manually map each Ticket entity to TicketDTO
+        for (Ticket ticket : availableTickets) {
+            TicketDTO ticketDTO = new TicketDTO();
+            ticketDTO.setId(ticket.getTicketId());
+            ticketDTO.setTicketType(ticket.getTicketType());  // Assuming TicketType is an Enum
+            ticketDTO.setSold(ticket.isSold());
+            ticketDTO.setPrice(ticket.getPrice());
+            // Add any other fields that you want to include in the TicketDTO
+
+            availableTicketDTOList.add(ticketDTO);
         }
-        return ticketDTOS;
+
+        return availableTicketDTOList;
     }
 }

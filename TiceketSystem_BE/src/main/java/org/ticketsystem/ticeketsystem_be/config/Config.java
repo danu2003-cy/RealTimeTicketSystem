@@ -1,7 +1,6 @@
 package org.ticketsystem.ticeketsystem_be.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.ticketsystem.ticeketsystem_be.dto.ConfigurationDTO;
 
@@ -32,4 +31,6 @@ public class Config {
         System.out.println("Configuration Initialized...!");
         return systemConfigDTO;
     }
+
+    //http://localhost:8081/swagger-ui.html#/
 }
