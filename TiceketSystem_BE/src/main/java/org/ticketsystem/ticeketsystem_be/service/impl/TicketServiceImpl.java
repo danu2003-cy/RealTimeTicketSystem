@@ -80,7 +80,7 @@ public class TicketServiceImpl implements TicketService {
 
         for (Ticket ticket : tickets) {
             ticketDTOs.add(new TicketDTO(
-                    ticket.getId(),
+                    ticket.getTicketId(),
                     ticket.getName(),
                     ticket.getPrice(),
                     ticket.isSold(),
@@ -98,7 +98,7 @@ public class TicketServiceImpl implements TicketService {
 
         for (Ticket ticket : ticketList) {
             ticketDTOS.add(new TicketDTO(
-                    ticket.getId(),
+                    ticket.getTicketId(),
                     ticket.getName(),
                     ticket.getPrice(),
                     ticket.isSold(),

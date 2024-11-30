@@ -2,12 +2,14 @@ package org.ticketsystem.ticeketsystem_be.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.ticketsystem.ticeketsystem_be.dto.ConfigurationDTO;
 
 
 import java.util.Scanner;
 
-@Configuration
+//@Configuration
+@Component
 public class Config {
 
     @Bean

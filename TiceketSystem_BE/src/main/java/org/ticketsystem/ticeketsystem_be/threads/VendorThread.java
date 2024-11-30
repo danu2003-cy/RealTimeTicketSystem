@@ -52,7 +52,7 @@ public class VendorThread implements Runnable {
 
                 if (ticketPool.addTicket(vendorID, ticket)){
                     ticketsAdded++;
-                    System.out.println("Ticket added by vendor" + vendorID+ "with ID " + ticket.getId());
+                    System.out.println("Ticket added by vendor" + vendorID+ "with ID " + ticket.getTicketId());
                 } else {
                     System.out.println("Vendor " + vendorID + " cannot add more tickets.");
                     break;

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "configuration_data")
-public class Configuration {
+public class Config {
 
         @Id
         @Column(name = "config_id")
@@ -23,10 +23,10 @@ public class Configuration {
         @Column(name = "max_ticket_capacity",nullable = false)
         private int maxTicketCapacity;
 
-    public Configuration() {
+    public Config() {
     }
 
-    public Configuration(int configID, int totalTickets, int ticketReleaseRate, int customerRetrievalRate, int maxTicketCapacity) {
+    public Config(int configID, int totalTickets, int ticketReleaseRate, int customerRetrievalRate, int maxTicketCapacity) {
         this.configID = configID;
         this.totalTickets = totalTickets;
         this.ticketReleaseRate = ticketReleaseRate;

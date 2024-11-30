@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
+
 @Entity
 @Table(name = "ticket")
 public class Ticket {
@@ -12,7 +13,7 @@ public class Ticket {
     @Id
     @Column(name = "ticket_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int ticketId;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -40,8 +41,8 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(int id, String name, EventType ticketType, double price, boolean sold, Date date, Vendor vendor, Set<Purchase> detailsSet) {
-        this.id = id;
+    public Ticket(int ticketId, String name, EventType ticketType, double price, boolean sold, Date date, Vendor vendor, Set<Purchase> detailsSet) {
+        this.ticketId = ticketId;
         this.name = name;
         this.ticketType = ticketType;
         this.price = price;
@@ -51,8 +52,8 @@ public class Ticket {
         this.detailsSet = detailsSet;
     }
 
-    public Ticket(int id, String name, EventType ticketType, double price, boolean sold, Date date, Vendor vendor) {
-        this.id = id;
+    public Ticket(int ticketId, String name, EventType ticketType, double price, boolean sold, Date date, Vendor vendor) {
+        this.ticketId = ticketId;
         this.name = name;
         this.ticketType = ticketType;
         this.price = price;
@@ -61,12 +62,12 @@ public class Ticket {
         this.vendor = vendor;
     }
 
-    public int getId() {
-        return id;
+    public int getTicketId() {
+        return ticketId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTicketId(int ticketId) {
+        this.ticketId = ticketId;
     }
 
     public String getName() {

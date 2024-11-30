@@ -32,7 +32,7 @@ public class CustomerThread implements Runnable {
                 if (ticket != null) {
                     ticket.setSold(true);
                     ticketRepo.save(ticket);
-                    System.out.println("Customer " + customer.getName() + " purchased ticket: " + ticket.getId());
+                    System.out.println("Customer " + customer.getName() + " purchased ticket: " + ticket.getTicketId());
                 }
                 Thread.sleep(customerRetrievalRate);
             } catch (InterruptedException e) {

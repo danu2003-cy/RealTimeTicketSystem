@@ -45,7 +45,7 @@ public class TicketPool {
 
         // Ensure the vendor's ticket count does not exceed the maximum allowed capacity
         if (vendorCount.get() < maxTicketCapacity) {
-            tickets.put(ticket.getId(), ticket);
+            tickets.put(ticket.getTicketId(), ticket);
             vendorCount.incrementAndGet();
             System.out.println("Ticket added by Vendor " + vendorID + ": " + ticket.getName());
             return true;
