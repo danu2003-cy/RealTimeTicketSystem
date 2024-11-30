@@ -51,6 +51,16 @@ public class Ticket {
         this.detailsSet = detailsSet;
     }
 
+    public Ticket(int id, String name, EventType ticketType, double price, boolean sold, Date date, Vendor vendor) {
+        this.id = id;
+        this.name = name;
+        this.ticketType = ticketType;
+        this.price = price;
+        this.sold = sold;
+        this.date = date;
+        this.vendor = vendor;
+    }
+
     public int getId() {
         return id;
     }

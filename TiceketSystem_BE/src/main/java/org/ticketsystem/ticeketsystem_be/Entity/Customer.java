@@ -37,6 +37,13 @@ public class Customer {
         this.detailsSet = detailsSet;
     }
 
+    public Customer(int customerId, String name, int retrievalInterval, boolean isVIP) {
+        this.customerId = customerId;
+        this.name = name;
+        this.retrievalInterval = retrievalInterval;
+        this.isVIP = isVIP;
+    }
+
     public int getCustomerId() {
         return customerId;
     }

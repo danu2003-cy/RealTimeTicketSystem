@@ -25,6 +25,12 @@ public class Vendor {
     public Vendor() {
     }
 
+    public Vendor(int id, String name, int ticketsPerRelease) {
+        this.id = id;
+        this.name = name;
+        this.ticketsPerRelease = ticketsPerRelease;
+    }
+
     public Vendor(int id, String name, int ticketsPerRelease, Set<Ticket> ticketSet) {
         this.id = id;
         this.name = name;

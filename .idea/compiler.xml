@@ -8,9 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="TiceketSystem_BE" />
-        <module name="TicketSystem_CLI" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="TicketSystem_CLI" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
