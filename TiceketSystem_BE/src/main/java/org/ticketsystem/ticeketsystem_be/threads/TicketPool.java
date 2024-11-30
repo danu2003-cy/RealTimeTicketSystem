@@ -81,8 +81,8 @@ public class TicketPool {
         return tickets.size();
     }
 
-    public int getRemainingCapacity(int vendorID) {
-        return maxTicketCapacity - vendorTicketCounts.getOrDefault(vendorID, new AtomicInteger(0)).get();
+    public int getRemainingCapacity(int vendorId) {
+        return maxTicketCapacity - vendorTicketCounts.getOrDefault(vendorId, new AtomicInteger(0)).get();
 
     }
 

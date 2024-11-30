@@ -37,7 +37,7 @@ public class TicketServiceImpl implements TicketService {
     public String purchesTicket(int ticketID, int customerID) {
         try {
 
-            Customer customer = customerRepo.getReferenceById(customerID);
+            Customer customer = customerRepo.getReferenceById(Integer.valueOf(customerID));
 
             if(customer==null){
                 return "Customer is not found...!";
@@ -93,7 +93,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<TicketDTO> getAvailableTickets() {
-        List<Ticket> ticketList = ticketRepo.findAllBySoldEquala(false);
+        List<Ticket> ticketList = ticketRepo.findAllBySoldEquals(false);
         List<TicketDTO> ticketDTOS = new ArrayList<>();
 
         for (Ticket ticket : ticketList) {
