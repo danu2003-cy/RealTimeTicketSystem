@@ -27,7 +27,6 @@ public class TicketPool {
         this.vendorTicketCounts = new ConcurrentHashMap<>();
     }
 
-
     public boolean addTicket(int vendorID, Ticket ticket) {
         // Check if the vendor count exceeds the maximum allowed vendors
         if (currentVendorCount.get() >= maxVendorCount && !vendorTicketCounts.containsKey(vendorID)) {
@@ -55,7 +54,6 @@ public class TicketPool {
         }
 
     }
-
 
     public Ticket removeTicket(int ticketID, int customerID) throws InterruptedException {
         System.out.println("Attempting to remove ticket with ID: " + ticketID);
