@@ -52,25 +52,25 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDTOs;
     }
 
-    @Override
-    public String updateCustomer(int customerID, CustomerDTO customerDTO) {
-        // Fetch the customer by ID
-        Customer customer = customerRepo.findById(customerID).orElse(null);
-
-        if (customer == null) {
-            return "Customer not found!";
-        }
-
-        // Update the customer fields
-        customer.setName(customerDTO.getName());
-        customer.setVIP(customerDTO.isVIP());
-        // If you have any other fields to update, you can add them here.
-
-        // Save the updated customer
-        customerRepo.save(customer);
-
-        return "Customer updated successfully!";
-    }
+//    @Override
+//    public String updateCustomer(int customerID, CustomerDTO customerDTO) {
+//        // Fetch the customer by ID
+//        Customer customer = customerRepo.findById(customerID).orElse(null);
+//
+//        if (customer == null) {
+//            return "Customer not found!";
+//        }
+//
+//        // Update the customer fields
+//        customer.setName(customerDTO.getName());
+//        customer.setVIP(customerDTO.isVIP());
+//
+//
+//        // Save the updated customer
+//        customerRepo.save(customer);
+//
+//        return "Customer updated successfully!";
+//    }
 
     @Override
     public String deleteCustomer(int customerID) {
@@ -82,4 +82,35 @@ public class CustomerServiceImpl implements CustomerService {
             return "Customer not found!";
         }
     }
+
+    @Override
+    public String updateCustomer(CustomerDTO customerDTO) {
+
+        boolean b = customerRepo.existsById(customerDTO.getCustomerId());
+
+        if (b){
+            Customer referenceById = customerRepo.getReferenceById(customerDTO.getCustomerId());
+            referenceById.setName(customerDTO.getName());
+            referenceById.setVIP(customerDTO.isVIP());
+
+            customerRepo.save(referenceById);
+            return "Customer has been updated successfully...";
+        }else {
+            return "Customer not found!";
+        }
+
+    }
+
+    @Override
+    public CustomerDTO getCustomerById(int customerID) {
+        if (customerRepo.existsById(customerID)) {
+            Customer customer = customerRepo.findById(customerID).get();
+            return new CustomerDTO(customer.getCustomerId(), customer.getName(), customer.isVIP());
+        } else {
+            return null;
+        }
+    }
+
+
+
 }

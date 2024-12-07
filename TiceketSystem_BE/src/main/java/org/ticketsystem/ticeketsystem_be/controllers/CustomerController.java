@@ -33,14 +33,42 @@ public class CustomerController {
         );
     }
 
-    @PutMapping(path = "/update-customer",params = {"customerID"})
-    public ResponseEntity<StandardResponse> updateCustomer(
-            @RequestBody CustomerDTO customerDTO,@RequestParam(name = "customerID") int customerID
-    ){
-        String data = customerService.updateCustomer(customerID,customerDTO);
+    @GetMapping("/get-customer-by-id")
+    public ResponseEntity<StandardResponse> getCustomerById(@RequestParam(name = "customerID") int customerID) {
+        CustomerDTO customer = customerService.getCustomerById(customerID);
+        if (customer != null) {
+            return new ResponseEntity<>(
+                    new StandardResponse(200, "Success", customer),
+                    HttpStatus.OK
+            );
+        } else {
+            return new ResponseEntity<>(
+                    new StandardResponse(404, "Customer not found", null),
+                    HttpStatus.NOT_FOUND
+            );
+        }
+    }
+
+
+//    @PutMapping(path = "/update-customer",params = {"customerID"})
+//    public ResponseEntity<StandardResponse> updateCustomer(
+//            @RequestBody CustomerDTO customerDTO,@RequestParam(name = "customerID") int customerID
+//    ){
+//        String data = customerService.updateCustomer(customerID,customerDTO);
+//        return new ResponseEntity<StandardResponse>(
+//                new StandardResponse(201,"Success",data),HttpStatus.CREATED
+//        );
+//    }
+
+    @PutMapping("/update-customer")
+    public ResponseEntity<StandardResponse> updateCustomer(@RequestBody CustomerDTO customerDTO) {
+
+        String message = customerService.updateCustomer(customerDTO);
+
         return new ResponseEntity<StandardResponse>(
-                new StandardResponse(201,"Success",data),HttpStatus.CREATED
+                new StandardResponse(201,"Success",message),HttpStatus.CREATED
         );
+
     }
 
     @DeleteMapping(path = "/delete-customer",params = {"customerID"})

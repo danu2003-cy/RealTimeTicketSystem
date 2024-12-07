@@ -12,7 +12,7 @@ import org.ticketsystem.ticeketsystem_be.service.VendorService;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping("vendor")
 public class VendorController {
 

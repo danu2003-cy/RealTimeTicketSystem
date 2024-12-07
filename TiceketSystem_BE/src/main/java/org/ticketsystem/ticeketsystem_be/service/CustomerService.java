@@ -10,7 +10,11 @@ public interface CustomerService {
 
     List<CustomerDTO> getAllCustomers();
 
-    String updateCustomer(int customerID, CustomerDTO customerDTO);
+//    String updateCustomer(int customerID, CustomerDTO customerDTO);
 
     String deleteCustomer(int id);
+
+    String updateCustomer(CustomerDTO customerDTO);
+
+    CustomerDTO getCustomerById(int customerID);
 }
