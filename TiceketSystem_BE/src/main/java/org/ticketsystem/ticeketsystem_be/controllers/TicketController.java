@@ -11,7 +11,7 @@ import org.ticketsystem.ticeketsystem_be.service.TicketService;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping("ticket")
 public class TicketController {
 

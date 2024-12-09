@@ -1,0 +1,8 @@
+.dashboard-container {
+    background-image: url('"C:\Users\USER\Desktop\FE\New folder\Untitled design.jpg"');
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center center; /* Centers the image */
+    background-attachment: fixed; /* Keeps the background fixed when scrolling */
+    background-repeat: no-repeat; /* Prevents repeating the image */
+    padding: 20px; /* Optional: adds padding around the content */
+  }

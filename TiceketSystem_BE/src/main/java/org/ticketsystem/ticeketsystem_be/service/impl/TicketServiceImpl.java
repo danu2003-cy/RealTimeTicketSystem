@@ -1,5 +1,6 @@
 package org.ticketsystem.ticeketsystem_be.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.ticketsystem.ticeketsystem_be.Entity.Customer;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional
 public class TicketServiceImpl implements TicketService {
@@ -35,18 +37,20 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public String purchesTicket(int ticketID, int customerID) {
+        log.info("Processing ticket purchase for Ticket ID: {} and Customer ID: {}", ticketID, customerID);
         try {
 
             Customer customer = customerRepo.getReferenceById(Integer.valueOf(customerID));
 
             if(customer==null){
+                log.warn("Customer with ID {} not found.", customerID);
                 return "Customer is not found...!";
             }
 
             Ticket removeTicket = ticketPool.removeTicket(ticketID, customerID);
 
             if(removeTicket==null){
-                System.out.println("Ticket with ID " + ticketID + " not found or already sold.");
+                log.warn("Ticket with ID {} not found or already sold.", ticketID);
                 return "Ticket is not found or already sold...!";
             }
             removeTicket.setSold(true);
@@ -61,12 +65,13 @@ public class TicketServiceImpl implements TicketService {
 
             purchaseRepo.save(purchase);
 
-            System.out.println("Ticket " + ticketID + " purchased by customer " + customer.getName());
+            log.info("Ticket {} purchased successfully by Customer: {}", ticketID, customer.getName());
             return "Ticket purchased successfully by customer : " + customer.getName();
 
 
         }catch (Exception  e){
             e.printStackTrace();
+
         }
 
 
@@ -75,6 +80,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<TicketDTO> getAllTickets() {
+        log.info("Fetching all tickets from the database.");
         List<Ticket> tickets = ticketRepo.findAll();
         List<TicketDTO> ticketDTOs = new ArrayList<>();
 
@@ -92,6 +98,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<TicketDTO> getAvailableTickets() {
+        log.info("Fetching all available tickets (unsold tickets).");
         // Retrieve all available tickets (those that are not sold)
         List<Ticket> availableTickets = ticketRepo.findBySoldFalse();  // Assuming a custom query in the repository for unsold tickets
 
