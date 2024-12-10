@@ -108,7 +108,7 @@ Ensure the following tools are installed:
 ### Steps to Run the Project
 
 #### Clone the Repository
-https://github.com/TharinduDMadushanka/real-time-event-ticketing-system-iit-oop-cw.git
+https://github.com/danu2003-cy/RealTimeTicketSystem.git
 
 #### Frontend Setup
 - git clone
