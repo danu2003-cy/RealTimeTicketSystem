@@ -62,10 +62,10 @@ function TicketList() {
               <div className="card-body">
                 <h5 className="card-title">{ticket.name}</h5>
                 <p className="card-text">
+                  <strong>Ticket ID:</strong> {ticket.id}<br />
                   <strong>Type:</strong> {ticket.ticketType}<br />
                   <strong>Price:</strong> ${ticket.price}<br />
-                  <strong>Date:</strong> {new Date(ticket.date).toLocaleDateString()}<br /> {/* 'date' field */}
-                  <strong>Vendor:</strong> {ticket.vendorID?.name} {/* Access 'vendorID' and display its 'name' */}
+                  <strong>Status: </strong>AVAILABLE {/* Access 'vendorID' and display its 'name' */}
                 </p>
                 <button
                   className="btn btn-primary"

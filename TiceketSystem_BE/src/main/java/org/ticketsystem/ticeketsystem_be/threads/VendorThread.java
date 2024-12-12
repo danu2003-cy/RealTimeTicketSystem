@@ -7,6 +7,7 @@ import org.ticketsystem.ticeketsystem_be.dto.PurchaseDTO;
 import org.ticketsystem.ticeketsystem_be.repositories.TicketRepo;
 
 import java.util.Date;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class VendorThread implements Runnable {
 
@@ -18,6 +19,7 @@ public class VendorThread implements Runnable {
     private volatile boolean running = true;
     private final int vendorID;
     private final PurchaseDTO purchaseDTO;
+    private final ReentrantLock lock = new ReentrantLock();
 
     public VendorThread(TicketRepo ticketRepo, TicketPool ticketPool, Vendor vendor, ConfigurationDTO configurationDTO ,PurchaseDTO purchaseDTO) {
         this.ticketRepo = ticketRepo;
@@ -32,6 +34,7 @@ public class VendorThread implements Runnable {
 
     @Override
     public void run() {
+        lock.lock();
 
         try{
             int ticketsAdded = 0;
@@ -63,7 +66,7 @@ public class VendorThread implements Runnable {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-
+        lock.unlock();
     }
 
     public void stop() {

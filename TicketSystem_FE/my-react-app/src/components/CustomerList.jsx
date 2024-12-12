@@ -20,7 +20,9 @@ function CustomerList() {
   const fetchCustomers = async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}${endpoints.customer.getAll}`);
-      setCustomers(response.data.data);
+      const tableData = response.data.data.map((customer)=>({...customer, type: customer.vip ? "VIP" : "REGULAR"}));
+      setCustomers(tableData);
+      console.log(tableData);
     } catch (error) {
       toast.error('Error fetching customers');
     }
@@ -67,7 +69,10 @@ function CustomerList() {
 
   const handleUpdateCustomer = async () => {
     try {
-      await axios.put(`${API_BASE_URL}${endpoints.customer.update}`, editingCustomer);
+      console.log(editingCustomer,'Dhanushi')
+      const payload= {...editingCustomer,vip: editingCustomer.vip==='VIP'? true:false}
+      console.log(payload,'Dewmindi')
+      await axios.put(`${API_BASE_URL}${endpoints.customer.update}`, payload);
       toast.success('Customer updated successfully');
       setEditingCustomer(null); // Close the editing mode
       fetchCustomers();
@@ -77,7 +82,7 @@ function CustomerList() {
   };
 
   const handleEditClick = (customer) => {
-    setEditingCustomer({ ...customer });
+    setEditingCustomer({ ...customer, type:undefined,vip:customer.vip===true? 'VIP':'REGULAR' });
   };
 
   const handleCancelEdit = () => {
@@ -184,7 +189,7 @@ function CustomerList() {
               <tr key={customer.customerId}>
                 <td>{customer.customerId}</td>
                 <td>{customer.name}</td>
-                <td>{customer.vip}</td>
+                <td>{customer.type}</td>
                 <td>
                   <button
                     className="btn btn-sm btn-info me-2"

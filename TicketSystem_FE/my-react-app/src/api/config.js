@@ -17,6 +17,7 @@ export const endpoints = {
   },
   ticket: {
     getAvailable: '/ticket/get-available-tickets',
-    purchase: '/ticket/purchase-ticket'
+    purchase: '/ticket/purchase-ticket',
+    allTickets: '/ticket/get-all-tickets'
   }
 };

@@ -2,10 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import  './Dashboard.css';
 
+import bg_img from '../assets/bg-img_new.png'
+
 function Dashboard() {
   return (
     <div className="container-fluid">
-      <h1 className="text-center mb-4">Ticket System Dashboard</h1>
+
+      <div className="bg-img_new">
+        <img src={bg_img} alt="" />
+      </div>
+
+      <h1 className="text-center ts-dashboard text-white mb-4">Ticket System Dashboard</h1>
       
       <div className="row">
         <div className="col-md-4 mb-4">
@@ -22,7 +29,7 @@ function Dashboard() {
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Vendors</h5>
-              <p className="card-text">Manage vendors and control vendor threads.</p>
+              <p className="card-text">Manage vendors, control vendor threads and View vendors.</p>
               <Link to="/vendors" className="btn btn-primary">Go to Vendors</Link>
             </div>
           </div>
@@ -32,7 +39,7 @@ function Dashboard() {
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Tickets</h5>
-              <p className="card-text">View and purchase available tickets.</p>
+              <p className="card-text">Browse the available tickets in the pool and complete your purchase.</p>
               <Link to="/tickets" className="btn btn-primary">Go to Tickets</Link>
             </div>
           </div>
